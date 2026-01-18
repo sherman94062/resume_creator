@@ -1,0 +1,14 @@
+# API Keys and Secrets
+.env
+
+# Python files
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+
+# Resume Tool Outputs
+*.pdf
+*.json
+tailored_resume*
