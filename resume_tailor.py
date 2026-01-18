@@ -1,462 +1,233 @@
-#!/usr/bin/env python3
-"""
-Resume Tailoring Tool - Uses OpenAI API to tailor resumes to job descriptions
-"""
-
 import os
-import sys
-import json
 import argparse
-from pathlib import Path
-from typing import Optional
+import json
 import markdown
+from typing import Optional
+from openai import OpenAI
+from pypdf import PdfReader
 from weasyprint import HTML, CSS
-from weasyprint.text.fonts import FontConfiguration
-
-# Check if openai is installed
-try:
-    from openai import OpenAI
-except ImportError:
-    print("Error: OpenAI library not installed. Run: pip install openai")
-    sys.exit(1)
-
+from models import JobAnalysis, ReflectionCritique
 
 class ResumeTailor:
-    """Tailors resumes to job descriptions using LLM"""
-
     def __init__(self, api_key: Optional[str] = None, model: str = "gpt-4o"):
         """
-        Initialize the resume tailor
-
-        Args:
-            api_key: OpenAI API key (if None, will use OPENAI_API_KEY env var)
-            model: OpenAI model to use (default: gpt-4o)
+        Initialize with API key and selected model.
         """
         self.api_key = api_key or os.getenv("OPENAI_API_KEY")
         if not self.api_key:
-            raise ValueError("OpenAI API key required. Set OPENAI_API_KEY env var or pass api_key parameter")
-
+            raise ValueError("OpenAI API key required. Set OPENAI_API_KEY env var.")
+        
         self.client = OpenAI(api_key=self.api_key)
         self.model = model
-        self.conversation_history = []
 
-    def log_llm_call(self, role: str, content: str, label: str = ""):
-        """Log LLM conversation for visibility"""
-        separator = "=" * 80
-        print(f"\n{separator}")
-        print(f"🤖 LLM CALL {label}")
-        print(f"{separator}")
-        print(f"Role: {role}")
-        print(f"Content:\n{content[:500]}{'...' if len(content) > 500 else ''}")
-        print(f"{separator}\n")
+    def read_pdf(self, file_path: str) -> str:
+        """Extracts text from a PDF file for LLM processing."""
+        print(f"📖 Reading PDF: {file_path}")
+        try:
+            reader = PdfReader(file_path)
+            text = ""
+            for page in reader.pages:
+                text += page.extract_text() + "\n"
+            return text
+        except Exception as e:
+            print(f"❌ Error reading PDF: {e}")
+            raise
 
-    def call_llm(self, prompt: str, system_prompt: Optional[str] = None, label: str = "") -> str:
+    def call_llm_structured(self, prompt: str, system_prompt: str, response_format):
+        """Helper to call LLM with Structured Outputs. Temperature is set to 0 for consistency."""
+        response = self.client.beta.chat.completions.parse(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": prompt}
+            ],
+            response_format=response_format,
+            temperature=0.0  # Zero temperature for consistent Match Scores and analysis
+        )
+        return response.choices[0].message.parsed
+
+    def analyze_job_description(self, jd_text: str) -> JobAnalysis:
+        """Step 1: Extract key requirements using Structured Outputs."""
+        system_prompt = "You are an expert ATS specialist. Extract key requirements from job descriptions."
+        prompt = f"Analyze this job description and extract the key details:\n\n{jd_text}"
+        return self.call_llm_structured(prompt, system_prompt, JobAnalysis)
+
+    def reflect_on_resume(self, tailored_resume: str, jd_text: str) -> ReflectionCritique:
+        """Step 3: Critique the generated resume for quality and accuracy."""
+        system_prompt = "You are a critical hiring manager. Evaluate if this resume is a perfect match for the job."
+        prompt = f"JOB DESCRIPTION:\n{jd_text}\n\nTAILORED RESUME:\n{tailored_resume}\n\nCritique this resume."
+        return self.call_llm_structured(prompt, system_prompt, ReflectionCritique)
+    
+    def generate_pdf(self, markdown_content: str, output_path: str):
+        """Step 4: Convert Markdown to a polished executive PDF."""
+        print(f"📄 Generating PDF: {output_path}")
+        html_content = markdown.markdown(markdown_content, extensions=['extra', 'nl2br'])
+        
+        # Professional executive-style CSS for a clean, non-ugly layout
+        css = CSS(string="""
+            @page { 
+                size: letter; 
+                margin: 0.5in 0.65in; 
+                @bottom-right {
+                    content: counter(page);
+                    font-size: 9pt;
+                    color: #999;
+                }
+            }
+            body { 
+                font-family: 'Helvetica', 'Arial', sans-serif; 
+                font-size: 10pt; 
+                line-height: 1.4; 
+                color: #333; 
+            }
+            h1 { 
+                font-size: 24pt; 
+                color: #1a1a1a; 
+                margin-bottom: 2pt; 
+                text-align: center; 
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                font-weight: 300;
+            }
+            /* Contact Line */
+            h1 + p { 
+                text-align: center; 
+                font-size: 8.5pt; 
+                color: #555; 
+                margin-bottom: 25pt; 
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 10pt;
+            }
+            h2 { 
+                font-size: 12pt; 
+                color: #2c5aa0; 
+                border-bottom: 1.5pt solid #2c5aa0; 
+                text-transform: uppercase; 
+                margin-top: 20pt; 
+                margin-bottom: 10pt; 
+                font-weight: bold; 
+                letter-spacing: 1px;
+            }
+            h3 { 
+                font-size: 11pt; 
+                font-weight: bold; 
+                margin-top: 12pt; 
+                margin-bottom: 0; 
+                color: #1a1a1a;
+            }
+            /* Date and Location line */
+            h3 + p { 
+                font-style: italic; 
+                color: #4a5568; 
+                font-size: 9pt; 
+                margin-top: 0;
+                margin-bottom: 6pt; 
+            }
+            ul { 
+                margin-top: 0; 
+                margin-bottom: 8pt; 
+                padding-left: 15pt; 
+            }
+            li { 
+                margin-bottom: 3pt; 
+                text-align: justify;
+            }
+            strong { 
+                color: #2d3748; 
+                font-weight: 600; 
+            }
+        """)
+        
+        full_html = f"<!DOCTYPE html><html><body>{html_content}</body></html>"
+        HTML(string=full_html).write_pdf(output_path, stylesheets=[css])
+
+    def tailor_resume(self, original: str, jd: str, analysis: JobAnalysis, critique_points: str = "") -> str:
+        """Step 2: Synthesize the tailored resume text with proper hierarchy."""
+        system_prompt = """You are an expert technical resume writer. 
+        Format headers strictly: # for Name, ## for Sections, ### for Role/Company.
+        Ensure a separate line for Dates/Location immediately under ### headers."""
+        
+        refinement_instr = f"\nREVISION FOCUS: {critique_points}" if critique_points else ""
+        
+        prompt = f"""
+        ORIGINAL RESUME DATA:
+        {original}
+
+        TARGET JOB REQUIREMENTS:
+        {analysis.model_dump_json(indent=2)}
+
+        {refinement_instr}
+
+        Rewrite in clean Markdown. Highlight accomplishments using metrics.
+        Highlight technical expertise in areas like Apache Druid or Technical Support Engineering.
         """
-        Make an LLM API call and log it
-
-        Args:
-            prompt: User prompt
-            system_prompt: Optional system prompt
-            label: Label for logging
-
-        Returns:
-            LLM response text
-        """
-        messages = []
-
-        if system_prompt:
-            messages.append({"role": "system", "content": system_prompt})
-            self.log_llm_call("system", system_prompt, f"{label} - SYSTEM")
-
-        messages.append({"role": "user", "content": prompt})
-        self.log_llm_call("user", prompt, f"{label} - USER")
-
-        print(f"⏳ Calling OpenAI API ({self.model})...")
-
+        
         response = self.client.chat.completions.create(
             model=self.model,
-            messages=messages,
-            temperature=0.7,
-            max_tokens=4000
+            messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": prompt}],
+            temperature=0.7
         )
+        return response.choices[0].message.content
 
-        result = response.choices[0].message.content
-
-        self.log_llm_call("assistant", result, f"{label} - RESPONSE")
-
-        # Log token usage
-        print(f"📊 Token Usage:")
-        print(f"   Prompt tokens: {response.usage.prompt_tokens}")
-        print(f"   Completion tokens: {response.usage.completion_tokens}")
-        print(f"   Total tokens: {response.usage.total_tokens}")
-        print()
-
-        return result
-
-    def analyze_job_description(self, job_description: str) -> dict:
-        """
-        Analyze job description to extract key requirements
-
-        Args:
-            job_description: The job posting text
-
-        Returns:
-            Dictionary with key requirements, skills, keywords
-        """
-        system_prompt = """You are an expert resume consultant and ATS (Applicant Tracking System) specialist.
-Your job is to analyze job descriptions and extract the most important information for resume tailoring."""
-
-        prompt = f"""Analyze this job description and extract:
-1. Key responsibilities (top 5-7)
-2. Required skills and technologies
-3. Important keywords for ATS optimization
-4. Desired experience level and background
-5. Key performance metrics or success criteria mentioned
-
-Job Description:
-{job_description}
-
-Return your analysis in JSON format with keys: responsibilities, skills, keywords, experience_requirements, success_metrics"""
-
-        response = self.call_llm(prompt, system_prompt, label="JOB ANALYSIS")
-
-        # Try to parse JSON from response
-        try:
-            # Extract JSON from markdown code blocks if present
-            if "```json" in response:
-                json_str = response.split("```json")[1].split("```")[0].strip()
-            elif "```" in response:
-                json_str = response.split("```")[1].split("```")[0].strip()
-            else:
-                json_str = response.strip()
-
-            return json.loads(json_str)
-        except json.JSONDecodeError:
-            print("⚠️  Warning: Could not parse JSON response, using raw text")
-            return {"raw_analysis": response}
-
-    def tailor_resume(self, original_resume: str, job_description: str, job_analysis: dict) -> str:
-        """
-        Tailor the resume to the job description
-
-        Args:
-            original_resume: Original resume text
-            job_description: Job posting text
-            job_analysis: Analyzed job requirements
-
-        Returns:
-            Tailored resume in markdown format
-        """
-        system_prompt = """You are an expert resume writer specializing in tailoring resumes for specific job postings.
-Your goal is to rewrite resumes to:
-1. Highlight the most relevant experience for the target role
-2. Use keywords from the job description for ATS optimization
-3. Quantify achievements wherever possible
-4. Reframe experience to match job requirements
-5. Maintain truthfulness - never fabricate experience
-6. Create a compelling narrative that shows the candidate is ideal for this role
-
-Return the resume in clean markdown format, well-structured and professional."""
-
-        prompt = f"""Please rewrite this resume to target the following job posting.
-
-JOB DESCRIPTION:
-{job_description}
-
-KEY REQUIREMENTS FROM ANALYSIS:
-{json.dumps(job_analysis, indent=2)}
-
-ORIGINAL RESUME:
-{original_resume}
-
-INSTRUCTIONS:
-1. Create a professional summary that speaks directly to this role
-2. Reorder and reframe experience sections to emphasize relevant skills
-3. Use specific keywords from the job description
-4. Add metrics and quantifiable achievements
-5. Highlight experience with the technologies/domains mentioned
-6. Keep the most relevant experience detailed, summarize less relevant roles
-7. Ensure ATS compatibility
-8. Format in clean markdown with clear sections
-
-Return ONLY the tailored resume in markdown format, starting with the name and contact info."""
-
-        return self.call_llm(prompt, system_prompt, label="RESUME TAILORING")
-
-    def generate_pdf(self, markdown_content: str, output_path: str):
-        """
-        Convert markdown resume to professional PDF
-
-        Args:
-            markdown_content: Resume in markdown format
-            output_path: Path to save PDF
-        """
-        print(f"📄 Generating PDF: {output_path}")
-
-        # Convert markdown to HTML
-        html_content = markdown.markdown(markdown_content, extensions=['extra', 'nl2br'])
-
-        # Professional resume CSS
-        css_content = """
-        @page {
-            size: letter;
-            margin: 0.5in;
-        }
-
-        body {
-            font-family: 'Helvetica', 'Arial', sans-serif;
-            font-size: 10pt;
-            line-height: 1.4;
-            color: #202020;
-            max-width: 100%;
-        }
-
-        h1 {
-            font-size: 24pt;
-            font-weight: bold;
-            margin: 0 0 5pt 0;
-            padding: 0;
-            color: #1a1a1a;
-            letter-spacing: 0.5pt;
-        }
-
-        h2 {
-            font-size: 13pt;
-            font-weight: bold;
-            margin: 16pt 0 8pt 0;
-            padding-bottom: 4pt;
-            border-bottom: 2pt solid #2c5aa0;
-            color: #2c5aa0;
-            text-transform: uppercase;
-            letter-spacing: 0.5pt;
-        }
-
-        h3 {
-            font-size: 11pt;
-            font-weight: bold;
-            margin: 10pt 0 4pt 0;
-            color: #1a1a1a;
-        }
-
-        h4 {
-            font-size: 10pt;
-            font-weight: bold;
-            font-style: italic;
-            margin: 6pt 0 4pt 0;
-            color: #404040;
-        }
-
-        p {
-            margin: 0 0 8pt 0;
-            text-align: justify;
-        }
-
-        ul {
-            margin: 4pt 0 8pt 0;
-            padding-left: 18pt;
-        }
-
-        li {
-            margin: 3pt 0;
-        }
-
-        strong {
-            font-weight: bold;
-            color: #1a1a1a;
-        }
-
-        em {
-            font-style: italic;
-            color: #404040;
-        }
-
-        hr {
-            border: none;
-            border-top: 1pt solid #cccccc;
-            margin: 10pt 0;
-        }
-
-        body > p:first-of-type {
-            text-align: center;
-            font-size: 9pt;
-            color: #404040;
-            margin: 0 0 10pt 0;
-        }
-
-        h2:first-of-type + p {
-            background-color: #f5f5f5;
-            padding: 10pt;
-            border-left: 3pt solid #2c5aa0;
-            margin-bottom: 10pt;
-        }
-
-        h3 + p {
-            margin-bottom: 4pt;
-        }
-
-        h4 + p {
-            margin-bottom: 6pt;
-        }
-
-        ul li strong:first-child {
-            color: #2c5aa0;
-        }
-
-        h2, h3, h4 {
-            page-break-after: avoid;
-        }
-
-        li {
-            page-break-inside: avoid;
-        }
-
-        a {
-            color: #2c5aa0;
-            text-decoration: none;
-        }
-        """
-
-        # Create full HTML document
-        full_html = f"""
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="utf-8">
-            <title>Tailored Resume</title>
-        </head>
-        <body>
-            {html_content}
-        </body>
-        </html>
-        """
-
-        # Configure fonts and generate PDF
-        font_config = FontConfiguration()
-        HTML(string=full_html).write_pdf(
-            output_path,
-            stylesheets=[CSS(string=css_content, font_config=font_config)],
-            font_config=font_config
-        )
-
-        print(f"✓ PDF generated successfully: {output_path}")
-
-    def tailor_resume_workflow(self,
-                               resume_path: str,
-                               job_desc_path: str,
-                               output_basename: str = "tailored_resume") -> dict:
-        """
-        Complete workflow to tailor a resume
-
-        Args:
-            resume_path: Path to original resume file
-            job_desc_path: Path to job description file (or text string)
-            output_basename: Base name for output files
-
-        Returns:
-            Dictionary with paths to generated files
-        """
-        print("🚀 Starting Resume Tailoring Workflow")
-        print("=" * 80)
-
-        # Read inputs
-        print(f"📖 Reading original resume: {resume_path}")
-        with open(resume_path, 'r') as f:
-            original_resume = f.read()
-
-        # Job description can be a file or direct text
-        if os.path.exists(job_desc_path):
-            print(f"📖 Reading job description: {job_desc_path}")
-            with open(job_desc_path, 'r') as f:
-                job_description = f.read()
+    def run_workflow(self, resume_path: str, jd_path: str, output_name: str = "tailored_resume.pdf"):
+        """Orchestrate the process and track the best version to prevent score regression."""
+        if resume_path.lower().endswith('.pdf'):
+            original = self.read_pdf(resume_path)
         else:
-            print(f"📖 Using job description from text")
-            job_description = job_desc_path
+            with open(resume_path, 'r') as f: original = f.read()
 
-        # Step 1: Analyze job description
-        print("\n📊 STEP 1: Analyzing job description...")
-        job_analysis = self.analyze_job_description(job_description)
+        with open(jd_path, 'r') as f: jd = f.read()
 
-        # Save analysis
-        analysis_path = f"{output_basename}_analysis.json"
-        with open(analysis_path, 'w') as f:
-            json.dump(job_analysis, f, indent=2)
-        print(f"✓ Job analysis saved: {analysis_path}")
+        # Step 1: Analysis
+        print("🔍 Analyzing Job Description...")
+        analysis = self.analyze_job_description(jd)
 
-        # Step 2: Tailor resume
-        print("\n✍️  STEP 2: Tailoring resume to job requirements...")
-        tailored_resume = self.tailor_resume(original_resume, job_description, job_analysis)
+        # Step 2: Initial Draft
+        print("✍️  Generating Initial Draft...")
+        current_resume = self.tailor_resume(original, jd, analysis)
+        
+        # Track the best version found so far
+        best_resume = current_resume
+        best_score = -1
 
-        # Save markdown version
-        md_path = f"{output_basename}.md"
-        with open(md_path, 'w') as f:
-            f.write(tailored_resume)
-        print(f"✓ Tailored resume (markdown) saved: {md_path}")
+        # Step 3: Reflection & Refinement Loop
+        for i in range(2):
+            print(f"🧐 Reflection Attempt {i+1}...")
+            critique = self.reflect_on_resume(current_resume, jd)
+            print(f"   Match Score: {critique.match_score}/100")
+            
+            # Update best version if current score is higher
+            if critique.match_score > best_score:
+                best_score = critique.match_score
+                best_resume = current_resume
+                print(f"   ⭐ New best version tracked!")
 
-        # Step 3: Generate PDF
-        print("\n📄 STEP 3: Generating PDF...")
-        pdf_path = f"{output_basename}.pdf"
-        self.generate_pdf(tailored_resume, pdf_path)
+            if critique.needs_revision and i < 1:
+                print(f"   🔄 Refining based on critique points...")
+                current_resume = self.tailor_resume(original, jd, analysis, ". ".join(critique.critique_points))
+            else:
+                if not critique.needs_revision:
+                    print("   ✅ Quality check passed!")
+                break
+        
+        # Final Step: Generate PDF from the version with the highest Match Score
+        print(f"🏆 Finalizing PDF with Best Score: {best_score}/100")
+        self.generate_pdf(best_resume, output_name)
+        return best_resume
 
-        print("\n" + "=" * 80)
-        print("✅ Resume Tailoring Complete!")
-        print("=" * 80)
-
-        return {
-            "analysis": analysis_path,
-            "markdown": md_path,
-            "pdf": pdf_path
-        }
-
-
-def main():
-    """Main CLI entry point"""
-    parser = argparse.ArgumentParser(
-        description="Tailor a resume to a specific job description using AI"
-    )
-    parser.add_argument(
-        "resume",
-        help="Path to original resume file"
-    )
-    parser.add_argument(
-        "job_description",
-        help="Path to job description file or direct text"
-    )
-    parser.add_argument(
-        "-o", "--output",
-        default="tailored_resume",
-        help="Base name for output files (default: tailored_resume)"
-    )
-    parser.add_argument(
-        "-k", "--api-key",
-        help="OpenAI API key (or set OPENAI_API_KEY env var)"
-    )
-    parser.add_argument(
-        "-m", "--model",
-        default="gpt-4o",
-        help="OpenAI model to use (default: gpt-4o)"
-    )
-
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Tailor a resume with Executive PDF support")
+    parser.add_argument("resume", help="Path to original resume (.pdf or .txt)")
+    parser.add_argument("job", help="Path to job description (.txt)")
+    parser.add_argument("-o", "--output", default="tailored_resume.pdf", help="Output PDF name")
+    
     args = parser.parse_args()
 
     try:
-        # Initialize tailor
-        tailor = ResumeTailor(api_key=args.api_key, model=args.model)
-
-        # Run workflow
-        results = tailor.tailor_resume_workflow(
-            resume_path=args.resume,
-            job_desc_path=args.job_description,
-            output_basename=args.output
-        )
-
-        print("\n📁 Generated Files:")
-        for file_type, path in results.items():
-            print(f"   {file_type}: {path}")
-
+        tailor = ResumeTailor()
+        tailor.run_workflow(args.resume, args.job, args.output)
+        print(f"\n✨ Successfully created: {args.output}")
     except Exception as e:
-        print(f"\n❌ Error: {e}", file=sys.stderr)
-        sys.exit(1)
-
-
-if __name__ == "__main__":
-    main()
+        print(f"\n❌ Error: {e}")
