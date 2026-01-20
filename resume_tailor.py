@@ -54,8 +54,23 @@ class ResumeTailor:
 
     def reflect_on_resume(self, tailored_resume: str, jd_text: str) -> ReflectionCritique:
         """Step 3: Critique the generated resume for quality and accuracy."""
-        system_prompt = "You are a critical hiring manager. Evaluate if this resume is a perfect match for the job."
-        prompt = f"JOB DESCRIPTION:\n{jd_text}\n\nTAILORED RESUME:\n{tailored_resume}\n\nCritique this resume."
+        system_prompt = """You are a critical hiring manager and ATS specialist.
+        Evaluate if this resume matches the job requirements.
+
+        Consider:
+        - Does it include the required skills and experience?
+        - Are relevant keywords from the job description present?
+        - Are achievements quantified with metrics?
+        - Is the experience framed to match the job requirements?
+        - What specific gaps remain between the resume and job requirements?"""
+
+        prompt = f"""JOB DESCRIPTION:
+{jd_text}
+
+TAILORED RESUME:
+{tailored_resume}
+
+Evaluate this resume against the job description. Provide a match score (0-100) and specific critique points about what's missing or weak."""
         return self.call_llm_structured(prompt, system_prompt, ReflectionCritique)
     
     def generate_pdf(self, markdown_content: str, output_path: str):
@@ -145,12 +160,19 @@ class ResumeTailor:
 
     def tailor_resume(self, original: str, jd: str, analysis: JobAnalysis, critique_points: str = "") -> str:
         """Step 2: Synthesize the tailored resume text with proper hierarchy."""
-        system_prompt = """You are an expert technical resume writer. 
+        system_prompt = """You are an expert technical resume writer.
         Format headers strictly: # for Name, ## for Sections, ### for Role/Company.
-        Ensure a separate line for Dates/Location immediately under ### headers."""
-        
-        refinement_instr = f"\nREVISION FOCUS: {critique_points}" if critique_points else ""
-        
+        Ensure a separate line for Dates/Location immediately under ### headers.
+
+        CRITICAL RULES:
+        - Use ONLY information from the ORIGINAL RESUME DATA provided
+        - DO NOT add, fabricate, or hallucinate any experience, skills, or achievements
+        - DO NOT omit relevant experience from the original resume
+        - Reframe and reorganize existing content to match job requirements
+        - Use keywords from the job description where they naturally fit existing experience"""
+
+        refinement_instr = f"\n\nREVISION FOCUS:\n{critique_points}" if critique_points else ""
+
         prompt = f"""
         ORIGINAL RESUME DATA:
         {original}
@@ -160,10 +182,17 @@ class ResumeTailor:
 
         {refinement_instr}
 
-        Rewrite in clean Markdown. Highlight accomplishments using metrics.
-        Highlight technical expertise in areas like Apache Druid or Technical Support Engineering.
+        Rewrite this resume in clean Markdown format to match the target job requirements:
+
+        1. Emphasize experience and skills that align with the job requirements
+        2. Reorganize bullet points to highlight most relevant achievements first
+        3. Use keywords from the job description naturally throughout
+        4. Quantify accomplishments with metrics wherever they exist
+        5. Reframe technical experience to match the job's domain and terminology
+
+        Remember: Use ONLY content from the original resume. Do not add fictional experience.
         """
-        
+
         response = self.client.chat.completions.create(
             model=self.model,
             messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": prompt}],
@@ -197,12 +226,36 @@ class ResumeTailor:
             print(f"🧐 Reflection Attempt {i+1}...")
             critique = self.reflect_on_resume(current_resume, jd)
             print(f"   Match Score: {critique.match_score}/100")
-            
+
             # Update best version if current score is higher
             if critique.match_score > best_score:
                 best_score = critique.match_score
                 best_resume = current_resume
                 print(f"   ⭐ New best version tracked!")
+
+            # Check if score is below 70% threshold
+            if critique.match_score < 70:
+                print(f"\n⚠️  WARNING: Match score ({critique.match_score}%) is below 70%")
+                print("\n📋 Areas that need improvement:")
+                for idx, point in enumerate(critique.critique_points, 1):
+                    print(f"   {idx}. {point}")
+
+                print("\n💡 Your original resume may be missing key experience or skills for this role.")
+                print("   Consider updating your master resume to include:")
+                print("   - More relevant technical skills or certifications")
+                print("   - Experience with required tools/platforms")
+                print("   - Quantifiable achievements in areas mentioned in the job description")
+
+                response = input("\n❓ Continue with current resume (c) or stop to update resume (s)? [c/s]: ").strip().lower()
+
+                if response == 's' or response == 'stop':
+                    print("\n🛑 Stopping to allow resume updates.")
+                    print(f"   Current best score: {best_score}/100")
+                    print(f"\n   After updating your resume, run the tool again with:")
+                    print(f"   python resume_tailor.py <updated_resume> {jd_path} -o {output_name}")
+                    return None
+                else:
+                    print("\n▶️  Continuing with current resume...\n")
 
             if critique.needs_revision and i < 1:
                 print(f"   🔄 Refining based on critique points...")
@@ -211,7 +264,7 @@ class ResumeTailor:
                 if not critique.needs_revision:
                     print("   ✅ Quality check passed!")
                 break
-        
+
         # Final Step: Generate PDF from the version with the highest Match Score
         print(f"🏆 Finalizing PDF with Best Score: {best_score}/100")
         self.generate_pdf(best_resume, output_name)
@@ -227,7 +280,10 @@ if __name__ == "__main__":
 
     try:
         tailor = ResumeTailor()
-        tailor.run_workflow(args.resume, args.job, args.output)
-        print(f"\n✨ Successfully created: {args.output}")
+        result = tailor.run_workflow(args.resume, args.job, args.output)
+        if result is not None:
+            print(f"\n✨ Successfully created: {args.output}")
+        else:
+            print("\n👋 Exiting. Good luck with your resume updates!")
     except Exception as e:
         print(f"\n❌ Error: {e}")

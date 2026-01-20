@@ -1,390 +1,123 @@
-Contact: sherman78641@gmail.com 650-544-0896
+Arthur (Mike) Sherman
 
+
+Contact: sherman78641@gmail.com  650-544-0896 
 Professional Experience
 Whitestone Elementary Literacy Program
 December 2025 – Present
-
-- Helping elementary school children with reading
-- Focus on working with 2nd and 3rd graders
+Helping elementary school children with reading
+Focus on working with 2nd and 3rd graders
 Human Automation Labs
 January 2023 – Present
-
-- Stealth startup focusing on using AI in SDLC and security
-- Developed SkillZ tool to generate sophisticated AI system prompts, for example to
-create PRD’s based on concise business description
-
-- PreditorAI is an autonomous security agent that lives in your environment. It doesn't just
-"scan" for bugs; it thinks like an attacker to nd, verify, and report critical risks while
-you sleep.
-
-- Extensive experience using AI to generate automated tests for Python and JavaScript
-code
-
-- Strong experience helping organizations integrate AI, including auto-generating
-powerful system prompts from simple commands
-
+Stealth startup focusing on using AI in SDLC and security
+Developed SkillZ tool to generate sophisticated AI system prompts, for example to create PRD’s based on concise business description
+PreditorAI is an autonomous security agent that lives in your environment. It doesn't just "scan" for bugs; it thinks like an attacker to find, verify, and report critical risks while you sleep.
+Extensive experience using AI to generate automated tests for Python and JavaScript code
+Strong experience helping organizations integrate AI, including auto-generating powerful system prompts from simple commands
 Imply – Burlingame, CA
 Senior Technical Support Engineer | January 2024 - December 2025
-Provide technical support for Imply customers using Imply Druid, based on the opensource Druid product. Druid is a distributed, column-oriented data store designed for high-
-
-1
-
-4
-
-6
-
-8
-
-7
-
-fi
-
-1
-
-4
-
-6
-
-8
-
-7
-
-2
-
-6
-
-0
-
-4
-
-9
-
-4
-
-0
-
-Lions Lair Leander TEXAS
-United States
-sherman
-@yahoo.com
-
-4
-
-1
-
-Arthur (Mike) Sherman
-
-performance analytics on large data sets. Customers can be on-premise, hybrid, and hosted
-(Polaris).
-
-•
-•
-•
-•
-
-Use Zendesk to take tickets from the queue and provide support until the reported
-issue is resolved, often requiring Zoom calls to clarify and verify solutions. Handled
-over 300 support issues during the most recent 12 month period
+Provide technical support for Imply customers using Imply Druid, based on the open-source Druid product.  Druid is a distributed, column-oriented data store designed for high-performance analytics on large data sets. Customers can be on-premise, hybrid, and hosted (Polaris).
+Worked closely with Imply CSM's to provide customer support, including onboarding, helping to expand user adoption.  Focused on revenue retention at renewal time, working with Imply account managers.
+Provided customer support through multiple channels including phone, email, and Zendesk support ticketing system. Handled over 300 support tickets during the most recent 12 month period, often requiring Zoom calls to clarify and verify solutions
+Captured customer insights from support interactions and communicated patterns, feature requests, and pain points to product and engineering teams through detailed ticket documentation and team meetings
+Documented common customer issues and use cases in internal knowledge base to improve team efficiency and product understanding
 Provide on-call coverage for 12-hour periods, including weekends and holidays
-Support a complex product with many customer con guration options and frequent
-updates that require careful management for regression
-Use GenAI products like Claude, Grok, Gemini and ChatGPT to analyze and help
-answer customer tickets. Generated code, test data and analyzed Java source code
-as needed
-
+Support a complex product with many customer configuration options and frequent updates that require careful management for regression
+Use GenAI products like Claude, Grok, Gemini and ChatGPT to analyze and help answer customer tickets.  Generated code, test data and analyzed Java source code as needed
 Target – Minneapolis, MN
 Lead Engineer | April 2015 - December 2023
-Brought in by the Senior Vice President of Enterprise Data, Analytics, and BI to contribute
-expertise to various projects:
-Green eld Project Leadership
-
-•
-•
-•
-•
-•
-•
-•
-
-Integral part of a 3-member team tasked with building an analytics platform for
-Target, replacing MicroStrategy and Teradata with Druid over a 6-year period
-Platform now serves 250,000 Target employees and vendors daily, running over 10
-million reports
-Developed architecture using Druid/PostgreSQL as data stores, MongoDB for
-metadata, and Python/Flask as the server
-Built server to support a REST API heavily used by Target, including all Target
-stores with their Zebra handheld devices
+Brought in by the Senior Vice President of Enterprise Data, Analytics, and BI to contribute expertise to various projects:
+Greenfield Project Leadership
+Integral part of a 3-member team tasked with building an analytics platform for Target, replacing MicroStrategy and Teradata with Druid over a 6-year period
+Platform now serves 250,000 Target employees and vendors daily, running over 10 million reports
+Developed architecture using Druid/PostgreSQL as data stores, MongoDB for metadata, and Python/Flask as the server
+Built server to support a REST API heavily used by Target, including all Target stores with their Zebra handheld devices
 Created UI as a Single Page Application using JavaScript/React
-Built initial ingestion spec generation functionality in Automation Portal (AP) using
-Java
-Expert at con guring and debugging complex SQL transformation pipelines in AP,
-Target's proprietary ETL solution that runs hundreds of thousands of transforms
-daily
+Built initial ingestion spec generation functionality in Automation Portal (AP) using Java
+Expert at configuring and debugging complex SQL transformation pipelines in AP, Target's proprietary ETL solution that runs hundreds of thousands of transforms daily
 Transitioned Retail Transactions
-
-•
-
 Successfully led the transition of store retail transactions from Teradata to Hadoop
 Cross-Domain Collaboration
-
-•
-
-Worked closely with Green eld customers to develop hundreds of datasets,
-calculated elds, cards, and dashboards spanning various business domains
+Worked closely with Greenfield customers to develop hundreds of datasets, calculated fields, cards, and dashboards spanning various business domains
+Gathered customer requirements and use cases through regular meetings and support interactions, translating business needs into technical solutions
+Communicated customer feedback and feature requests to product team to inform platform roadmap and prioritization
 Technology Stack Expertise
-
-•
-
-fi
-
-fi
-
-fi
-
-fi
-
-fi
-
-fi
-
-Pro cient in Python, Hive SQL, ETL, Automated Testing (Cypress, Nosetests),
-Kafka, and Kafka data pipelines
+Proficient in Python, Hive SQL, ETL, Automated Testing (Cypress, Nosetests), Kafka, and Kafka data pipelines
 Tool Development and Mentorship
-
-•
-•
-
-Developed tools using Python and the Green eld API, some of which were
-incorporated into the core Green eld product
-Mentored 5 TLPs through their 6-month assignments, aiding in their understanding
-of the codebase and project implementation
-
+Developed tools using Python and the Greenfield API, some of which were incorporated into the core Greenfield product
+Mentored 5 TLPs through their 6-month assignments, aiding in their understanding of the codebase and project implementation
 Edgecase – Austin, TX
 CTO | February 2014 - December 2014
-Compare Metrics' Adaptive Commerce solutions empower shoppers to think, discover,
-compare, and decide as they do in the real world, using their own words and preferences to
-con dently discover the right product.
-
-•
-•
-
-Took over from a co-founder and ran the software development and online
-operations group
-Delivered increased engagement, higher conversion, and a perpetually more
-personalized discovery experience for each shopper
-
+Compare Metrics' Adaptive Commerce solutions empower shoppers to think, discover, compare, and decide as they do in the real world, using their own words and preferences to confidently discover the right product.
+Took over from a co-founder and ran the software development and online operations group
+Delivered increased engagement, higher conversion, and a perpetually more personalized discovery experience for each shopper
 RichRelevance – San Francisco, CA
 Director of Engineering for Retail | October 2012 - February 2014
-RichRelevance powers personalized shopping experiences for the world's largest and most
-innovative retail brands, including Walmart, Sears, Target, and others.
-
-•
-•
-•
-•
-•
-•
-
-Responsible for the development of the RichRelevance core retail product,
-RichRecs, as well as RichPromo, ICS, and RichConnect, which generate most of the
-company's revenue
-Tripled the team over 12 months, including the integration of the Avail acquisition
-in Malmö, Sweden
-Shipped 23 high-quality releases in 2013 into the RichRelevance private cloud
-(approximately one every 2 weeks)
-Supported the RichRelevance eCommerce platform responsible for over $100
-billion of ecommerce traf c since inception in 2008
-Worked closely with Product Management and Sales to prioritize product features
-and quickly get them into production
-Served as rst contact for production issues with Client Services, providing expert
-debugging prior to addressing issues as patches or scheduling stories in the sprint
-process
-
+RichRelevance powers personalized shopping experiences for the world's largest and most innovative retail brands, including Walmart, Sears, Target, and others.
+Responsible for the development of the RichRelevance core retail product, RichRecs, as well as RichPromo, ICS, and RichConnect, which generate most of the company's revenue
+Tripled the team over 12 months, including the integration of the Avail acquisition in Malmö, Sweden
+Shipped 23 high-quality releases in 2013 into the RichRelevance private cloud (approximately one every 2 weeks)
+Supported the RichRelevance eCommerce platform responsible for over $100 billion of ecommerce traffic since inception in 2008
+Worked closely with Product Management and Sales to prioritize product features and quickly get them into production
+Served as first contact for production issues with Client Services, providing expert debugging prior to addressing issues as patches or scheduling stories in the sprint process
 Mocana – San Francisco, CA
 VP Engineering & Data Center Operations | August 2010 - September 2012
-Mocana secures the "Internet of Things" - the 20 billion non-PC devices that are
-increasingly connecting to networks across every sector of our economy, including
-smartphones, datacom, smart grid, federal, consumer, and medical devices.
-
-fi
-
-fi
-
-Reported to the CEO, managing engineering, QA, technical support, professional
-services, and technical documentation
-
-fi
-
-fi
-
-fi
-
-•
-
-•
-•
-•
-•
-•
-•
-•
-•
-•
-•
-
-Took over a team of 15 from the CTO co-founder and doubled it over a 2-year
-period
-Built new products at Mocana, including MAP, VeloDAR, VeloVPN, and an
-Internet of Things market product
-Managed four different development teams with a core team in San Francisco and
-distributed team members in India, Canada, and throughout the U.S.
-Contracted out professional services and some core development as needed,
-leveraging a network of 25 contractors across 2 different companies, and converted
-contractors to full-time employees as needed
+Mocana secures the "Internet of Things" - the 20 billion non-PC devices that are increasingly connecting to networks across every sector of our economy, including smartphones, datacom, smart grid, federal, consumer, and medical devices.
+Reported to the CEO, managing engineering, QA, technical support, professional services, and technical documentation
+Took over a team of 15 from the CTO co-founder and doubled it over a 2-year period
+Built new products at Mocana, including MAP, VeloDAR, VeloVPN, and an Internet of Things market product
+Managed four different development teams with a core team in San Francisco and distributed team members in India, Canada, and throughout the U.S.
+Contracted out professional services and some core development as needed, leveraging a network of 25 contractors across 2 different companies, and converted contractors to full-time employees as needed
 Streamlined the software development process via Agile/Scrum
-Worked with device OEMs to help release products integrated with Mocana
-technology
+Worked with device OEMs to help release products integrated with Mocana technology
 Familiar with Android and iOS, both at a system level and with mobile applications
 Supported team member who chaired an IETF working group on OAuth
-Participated in the Mocana Amphion forum to help establish security standards in
-the embedded, connected device industry
+Participated in the Mocana Amphion forum to help establish security standards in the embedded, connected device industry
 Strongly encouraged and fostered getting technology patented at Mocana
-
 DemandTec – San Mateo, CA
 VP Engineering & Data Center Operations | November 2008 - August 2010
-DemandTec (purchased by IBM in 2011) provides pricing, promotion, and demand
-optimization solutions for retailers and consumer product manufacturers, delivered as
-Software as a Service (SaaS).
-
-•
-•
-•
-•
-•
-•
-•
-•
-•
-
-Managed a combination of platform software development and data center
-operations, reporting to the COO
-Managed the day-to-day operation of the DemandTec service, a 24x7 service used
-by some of the largest retail and CP companies in the world
-Built a new data center site, on time and under budget, hosted by AT&T in Mesa,
-AZ, to host a signi cant new retail customer (largest contract ever)
-Designed the data center infrastructure to provide a reliable architecture for
-DemandTec's SaaS service
+DemandTec (purchased by IBM in 2011) provides pricing, promotion, and demand optimization solutions for retailers and consumer product manufacturers, delivered as Software as a Service (SaaS).
+Managed a combination of platform software development and data center operations, reporting to the COO
+Managed the day-to-day operation of the DemandTec service, a 24x7 service used by some of the largest retail and CP companies in the world
+Built a new data center site, on time and under budget, hosted by AT&T in Mesa, AZ, to host a significant new retail customer (largest contract ever)
+Designed the data center infrastructure to provide a reliable architecture for DemandTec's SaaS service
 Started migration of all existing DemandTec customers to this new site
-Delivered 5 major product releases since November 2008, building signi cant
-software components for each release and coordinating their delivery into
-production
-Built reusable software components in support of the DemandTec applications team,
-including the DemandTec job farm, security, identity access management,
-application web tier, application server, and work ow
-Managed the database engineering team that owned the transactional data model for
-the DemandTec product and the data warehouse powering the company's nextGEN
-offering (powered by Netezza)
-Managed the OpenLink engineering team that owned the import/export product
-functionality, leveraging Tidal and DataStage incorporated into a product
-framework for scheduling and monitoring data loads and data extracts
-
-fi
-
-fl
-
-fi
-
+Delivered 5 major product releases since November 2008, building significant software components for each release and coordinating their delivery into production
+Built reusable software components in support of the DemandTec applications team, including the DemandTec job farm, security, identity access management, application web tier, application server, and workflow
+Managed the database engineering team that owned the transactional data model for the DemandTec product and the data warehouse powering the company's nextGEN offering (powered by Netezza)
+Managed the OpenLink engineering team that owned the import/export product functionality, leveraging Tidal and DataStage incorporated into a product framework for scheduling and monitoring data loads and data extracts
 Kareo – Irvine, CA
-
-VP Engineering | April 2007 - November 2008
-The Kareo product is a Practice Management System (PMS) delivered as a Software as a
-Service (SaaS) offering at a very low cost, targeted to small medical practices.
-
-•
-•
-•
-•
-•
-•
-•
-
-Built product using C# and Microsoft SQL Server, with electronic claims
-component built using BizTalk
-Worked with the CEO and existing investors to establish goals and structure for the
-next generation product, along with a product implementation roadmap and
-timetable
-Restructured the engineering team, reducing the overall size and focusing on a
-Service Oriented Architecture (SOA) appropriate for a low-cost SaaS product
-delivered to tens of thousands of physicians
-Managed the day-to-day operation of the Kareo service, a 24x7 service used by over
-1,000 physicians to bill an average of $10 million in claims per week
-Managed the technical support function, provided through email using
-Salesforce.com
-Handled account management for larger customers, including cash ow and
-expense analysis as well as collections issues
-Worked to structure funding for the company for the next 3 to 5 years, especially in
-light of the Athena Health IPO which established medical billing as a viable
-investment ($1.2B market cap)
-
+VP Engineering | April 2007 - November 2008
+The Kareo product is a Practice Management System (PMS) delivered as a Software as a Service (SaaS) offering at a very low cost, targeted to small medical practices.
+Built product using C# and Microsoft SQL Server, with electronic claims component built using BizTalk
+Worked with the CEO and existing investors to establish goals and structure for the next generation product, along with a product implementation roadmap and timetable
+Restructured the engineering team, reducing the overall size and focusing on a Service Oriented Architecture (SOA) appropriate for a low-cost SaaS product delivered to tens of thousands of physicians
+Managed the day-to-day operation of the Kareo service, a 24x7 service used by over 1,000 physicians to bill an average of $10 million in claims per week
+Managed the technical support function, providing customer support through phone and email using Salesforce.com ticketing system
+Handled account management for larger customers, including cash flow and expense analysis as well as collections issues
+Worked to structure funding for the company for the next 3 to 5 years, especially in light of the Athena Health IPO which established medical billing as a viable investment ($1.2B market cap)
 Responsys – Redwood City, CA
 VP Engineering | November 2004 - April 2007
-The Responsys product is a leader in the Email Service Provider (ESP) space, operating as
-a SaaS. Managed the engineering and QA teams at Responsys, and managed the Operations
-team during a transition period from late 2005 through Q1 2006.
-
-fl
-
-fi
-
-fi
-
-•
-
-fi
-
-•
-
+The Responsys product is a leader in the Email Service Provider (ESP) space, operating as a SaaS. Managed the engineering and QA teams at Responsys, and managed the Operations team during a transition period from late 2005 through Q1 2006.
 Built product using Java and Oracle
-Responsible for the 2005 release that established Responsys as #1 in the Jupiter and
-Forrester reports, resulting in a large improvement in sales
-Recruited more than a dozen new software engineers and data center professionals
-over a 2-year period
-Brought in a new QA manager and created an automated QA process to allow major
-and minor releases to be certi ed faster and in a more reliable fashion
+Responsible for the 2005 release that established Responsys as #1 in the Jupiter and Forrester reports, resulting in a large improvement in sales
+Recruited more than a dozen new software engineers and data center professionals over a 2-year period
+Brought in a new QA manager and created an automated QA process to allow major and minor releases to be certified faster and in a more reliable fashion
 Transitioned the QA function offshore with an outsource QA company in India
-Embarked on a project to rebuild the technology from the ground up and provide
-new dynamic capabilities for automated marketing programs, while giving
-customers a more desktop-like experience with drag-and-drop marketing program
-creation and the ability to create dynamic pro le and behavioral lters
-Worked with the Operations team to de ne and deploy a new data center at AT&T
-to manage the expected growth of the company, replacing an insecure and poorly
-managed data center that was shut down in 2007
-Worked with the Sales team on major accounts and to support large customers
-transitioning from pre-sales to implementation, mostly helping in the area of data
-integration
-
-fi
-
-•
-•
-•
-•
-•
-•
-
-Additional Experience
-Several other VP Engineering positions and software engineering roles, including pre-series
-A startups and series A startups where I was an early employee and those companies grew
-and eventually went public.
-
+Embarked on a project to rebuild the technology from the ground up and provide new dynamic capabilities for automated marketing programs, while giving customers a more desktop-like experience with drag-and-drop marketing program creation and the ability to create dynamic profile and behavioral filters
+Worked with the Operations team to define and deploy a new data center at AT&T to manage the expected growth of the company, replacing an insecure and poorly managed data center that was shut down in 2007
+Worked with the Sales team on major accounts and to support large customers transitioning from pre-sales to implementation, mostly helping in the area of data integration
+Additional Experience
+Several other VP Engineering positions and software engineering roles, including pre-series A startups and series A startups where I was an early employee and those companies grew and eventually went public.
 Education
-Rutgers University
-BA Computer Science
-
-•
-•
-
+Rutgers University BA Computer Science
 Department of Computer Science, Departmental Distinction Award
 Phi Beta Kappa
-
-
+Zello Product Experience
+Active Zello User | 2020 - Present
+Active user of Zello's push-to-talk application for coordinating ranch operations and communications in Texas
+Hands-on experience with Zello's core features including channel management, user coordination, and real-time voice communication for field operations
+Familiar with Zello's mobile application across iOS and Android platforms in real-world field conditions
+Understand firsthand the needs of frontline and desk-less workers using voice-first communication tools
+Experience troubleshooting connectivity, audio quality, and configuration issues in challenging network environments
+Appreciate Zello's value proposition for coordinating distributed teams in real-time without traditional phone calls

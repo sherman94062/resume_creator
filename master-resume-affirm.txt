@@ -1,0 +1,190 @@
+Arthur (Mike) Sherman
+
+Contact: sherman78641@gmail.com  650-544-0896
+
+Core Competencies:
+Client Success & Account Management • CRM Systems (Salesforce, Zendesk) • E-commerce Platforms • Marketing Technology (ESP, Personalization, Marketing Automation) • Financial Technology • SaaS Operations • Customer Feedback & Product Advocacy • Stakeholder Relationship Building • High-Pressure Multi-Priority Management • Technical Support Excellence
+
+Professional Experience
+
+Whitestone Elementary Literacy Program
+December 2025 – Present
+Helping elementary school children with reading
+Focus on working with 2nd and 3rd graders
+
+Human Automation Labs
+January 2023 – Present
+Stealth startup focusing on using AI in SDLC and security
+Developed SkillZ tool to generate sophisticated AI system prompts, for example to create PRD's based on concise business description
+PreditorAI is an autonomous security agent that lives in your environment. It doesn't just "scan" for bugs; it thinks like an attacker to find, verify, and report critical risks while you sleep.
+Extensive experience using AI to generate automated tests for Python and JavaScript code
+Strong experience helping organizations integrate AI, including auto-generating powerful system prompts from simple commands
+
+Imply – Burlingame, CA
+Senior Technical Support Engineer | January 2024 - December 2025
+
+Provided technical support for Imply customers using Imply Druid, a distributed, column-oriented data store designed for high-performance analytics on large data sets. Managed customers across on-premise, hybrid, and hosted (Polaris) environments.
+
+Client Success & Relationship Management:
+• Worked closely with Imply Customer Success Managers to drive customer retention and expansion, focusing on revenue preservation at renewal time through proactive relationship building and value demonstration
+• Built strong rapport with technical and business stakeholders across enterprise accounts through regular check-ins, Zoom calls, and personalized support strategies
+• Identified upsell and cross-sell opportunities by deeply understanding customer use cases and recommending advanced features, additional capacity, or complementary Imply products
+• Conducted quarterly business reviews with key accounts to review performance metrics, gather feedback, and align on strategic roadmap priorities
+
+High-Volume, Multi-Priority Client Support:
+• Managed 300+ support tickets annually through Zendesk CRM platform in fast-paced, high-pressure environment requiring rapid context switching between complex technical issues
+• Provided multi-channel support (phone, email, Zendesk ticketing) while maintaining response SLAs and customer satisfaction scores above 95%
+• Handled on-call coverage for 12-hour periods including weekends and holidays, managing critical production incidents requiring immediate resolution
+
+Customer Feedback & Product Advocacy:
+• Systematically captured customer insights from support interactions and communicated patterns, feature requests, and pain points to product and engineering teams through detailed ticket documentation and bi-weekly team meetings
+• Documented common customer issues and use cases in internal knowledge base, creating 50+ knowledge articles that improved team efficiency and reduced resolution times by 30%
+• Served as voice of customer in product planning discussions, translating customer feedback into actionable product improvements
+
+Technical Excellence:
+• Supported complex product with numerous configuration options and frequent updates requiring careful regression management
+• Leveraged GenAI tools (Claude, Grok, Gemini, ChatGPT) to analyze customer issues, generate code samples, create test data, and analyze Java source code for faster resolution
+
+Target – Minneapolis, MN
+Lead Engineer | April 2015 - December 2023
+
+Brought in by the Senior Vice President of Enterprise Data, Analytics, and BI to contribute expertise to various projects:
+
+Greenfield Project Leadership:
+• Integral part of a 3-member team tasked with building an analytics platform for Target, replacing MicroStrategy and Teradata with Druid over a 6-year period
+• Platform now serves 250,000 Target employees and vendors daily, running over 10 million reports
+• Developed architecture using Druid/PostgreSQL as data stores, MongoDB for metadata, and Python/Flask as the server
+• Built server to support a REST API heavily used by Target, including all Target stores with their Zebra handheld devices
+• Created UI as a Single Page Application using JavaScript/React
+• Built initial ingestion spec generation functionality in Automation Portal (AP) using Java
+• Expert at configuring and debugging complex SQL transformation pipelines in AP, Target's proprietary ETL solution that runs hundreds of thousands of transforms daily
+
+Client Relationship & Account Management:
+• Collaborated directly with 50+ internal business stakeholders across merchandising, finance, and operations teams to gather requirements, understand use cases, and translate business needs into technical solutions
+• Conducted regular meetings and support sessions with Greenfield platform customers, building trusted advisor relationships that facilitated platform adoption across 250,000 Target employees
+• Gathered continuous customer feedback through usage analytics, support interactions, and quarterly reviews to inform platform roadmap and prioritization decisions
+• Managed competing priorities from multiple business domains in fast-paced retail environment with critical daily reporting deadlines affecting $75+ billion annual revenue operations
+
+Transitioned Retail Transactions:
+• Successfully led the transition of store retail transactions from Teradata to Hadoop
+
+Technology Stack Expertise:
+• Proficient in Python, Hive SQL, ETL, Automated Testing (Cypress, Nosetests), Kafka, and Kafka data pipelines
+
+Tool Development and Mentorship:
+• Developed tools using Python and the Greenfield API, some of which were incorporated into the core Greenfield product
+• Mentored 5 TLPs through their 6-month assignments, aiding in their understanding of the codebase and project implementation
+
+Edgecase – Austin, TX
+CTO | February 2014 - December 2014
+
+Compare Metrics' Adaptive Commerce solutions empower shoppers to think, discover, compare, and decide as they do in the real world, using their own words and preferences to confidently discover the right product.
+Took over from a co-founder and ran the software development and online operations group
+Delivered increased engagement, higher conversion, and a perpetually more personalized discovery experience for each shopper
+
+RichRelevance – San Francisco, CA
+Director of Engineering for Retail | October 2012 - February 2014
+
+RichRelevance powers personalized shopping experiences for the world's largest retail brands, including Walmart, Sears, and Target, using advanced machine learning and marketing technology.
+
+Product & Client Success Leadership:
+• Responsible for development of RichRelevance core retail product (RichRecs), RichPromo, ICS, and RichConnect - products generating majority of company revenue from e-commerce platform supporting $100+ billion in transaction volume since 2008
+• Collaborated closely with Product Management and Sales teams to prioritize client-requested features, ensuring rapid delivery into production while maintaining platform stability for enterprise e-commerce clients
+• Served as first point of contact for Client Services on production issues, building strong cross-functional relationships and providing expert debugging before escalating to development teams
+
+E-commerce & Marketing Technology Expertise:
+• Deep expertise in marketing technology stack including personalization engines, recommendation algorithms, promotional targeting, and real-time decisioning for e-commerce experiences
+• Supported major retail brands' e-commerce platforms processing millions of daily transactions, requiring deep understanding of online shopping behavior, conversion optimization, and customer journey mapping
+• Delivered 23 high-quality releases in 2013 (bi-weekly cadence) balancing client feature requests with platform scalability and reliability requirements
+
+Team & Execution Excellence:
+• Tripled engineering team over 12 months while maintaining release velocity and quality, including integration of Avail acquisition in Malmö, Sweden
+• Managed distributed team across multiple time zones in high-pressure environment supporting revenue-critical systems for Fortune 500 retailers
+
+Mocana – San Francisco, CA
+VP Engineering & Data Center Operations | August 2010 - September 2012
+
+Mocana secures the "Internet of Things" - the 20 billion non-PC devices that are increasingly connecting to networks across every sector of our economy, including smartphones, datacom, smart grid, federal, consumer, and medical devices.
+
+Reported to the CEO, managing engineering, QA, technical support, professional services, and technical documentation
+Took over a team of 15 from the CTO co-founder and doubled it over a 2-year period
+Built new products at Mocana, including MAP, VeloDAR, VeloVPN, and an Internet of Things market product
+Managed four different development teams with a core team in San Francisco and distributed team members in India, Canada, and throughout the U.S.
+Contracted out professional services and some core development as needed, leveraging a network of 25 contractors across 2 different companies, and converted contractors to full-time employees as needed
+Streamlined the software development process via Agile/Scrum
+Worked with device OEMs to help release products integrated with Mocana technology
+Familiar with Android and iOS, both at a system level and with mobile applications
+Supported team member who chaired an IETF working group on OAuth
+Participated in the Mocana Amphion forum to help establish security standards in the embedded, connected device industry
+Strongly encouraged and fostered getting technology patented at Mocana
+
+DemandTec – San Mateo, CA
+VP Engineering & Data Center Operations | November 2008 - August 2010
+
+DemandTec (purchased by IBM in 2011) provides pricing, promotion, and demand optimization solutions for retailers and consumer product manufacturers, delivered as Software as a Service (SaaS).
+
+Managed a combination of platform software development and data center operations, reporting to the COO
+Managed the day-to-day operation of the DemandTec service, a 24x7 service used by some of the largest retail and CP companies in the world
+Built a new data center site, on time and under budget, hosted by AT&T in Mesa, AZ, to host a significant new retail customer (largest contract ever)
+Designed the data center infrastructure to provide a reliable architecture for DemandTec's SaaS service
+Started migration of all existing DemandTec customers to this new site
+Delivered 5 major product releases since November 2008, building significant software components for each release and coordinating their delivery into production
+Built reusable software components in support of the DemandTec applications team, including the DemandTec job farm, security, identity access management, application web tier, application server, and workflow
+Managed the database engineering team that owned the transactional data model for the DemandTec product and the data warehouse powering the company's nextGEN offering (powered by Netezza)
+Managed the OpenLink engineering team that owned the import/export product functionality, leveraging Tidal and DataStage incorporated into a product framework for scheduling and monitoring data loads and data extracts
+
+Kareo – Irvine, CA
+VP Engineering | April 2007 - November 2008
+
+The Kareo product is a Practice Management System (PMS) delivered as a Software as a Service (SaaS) offering at a very low cost, targeted to small medical practices.
+
+Product & Technical Leadership:
+• Built product using C# and Microsoft SQL Server, with electronic claims component built using BizTalk
+• Worked with CEO and investors to establish product roadmap and implementation timetable for next-generation platform
+• Restructured engineering team to focus on Service Oriented Architecture (SOA) appropriate for low-cost SaaS product serving tens of thousands of physicians
+
+Client Success & Account Management:
+• Managed technical support function providing customer support through phone and email channels using Salesforce CRM ticketing system
+• Served as account manager for larger medical practice customers, building trusted advisor relationships while handling complex issues including cash flow analysis, expense management, and collections
+• Managed day-to-day operation of 24x7 SaaS service used by 1,000+ physicians processing $10 million in claims weekly, requiring rapid response to critical production issues
+• Proficient in Salesforce CRM for ticket management, customer communication tracking, escalation workflows, and support analytics
+
+Responsys – Redwood City, CA
+VP Engineering | November 2004 - April 2007
+
+The Responsys product is a leader in the Email Service Provider (ESP) space, operating as a SaaS. Managed the engineering and QA teams at Responsys, and managed the Operations team during a transition period from late 2005 through Q1 2006.
+
+Product & Technical Leadership:
+• Built product using Java and Oracle
+• Responsible for the 2005 release that established Responsys as #1 in the Jupiter and Forrester reports, resulting in a large improvement in sales
+• Recruited more than a dozen new software engineers and data center professionals over a 2-year period
+• Brought in a new QA manager and created an automated QA process to allow major and minor releases to be certified faster and in a more reliable fashion
+• Transitioned the QA function offshore with an outsource QA company in India
+• Embarked on a project to rebuild the technology from the ground up and provide new dynamic capabilities for automated marketing programs, while giving customers a more desktop-like experience with drag-and-drop marketing program creation and the ability to create dynamic profile and behavioral filters
+• Worked with the Operations team to define and deploy a new data center at AT&T to manage the expected growth of the company, replacing an insecure and poorly managed data center that was shut down in 2007
+
+Marketing Technology & Client Collaboration:
+• Led development of industry-leading Email Service Provider (ESP) platform ranked #1 in Jupiter and Forrester reports, powering automated marketing campaigns for major brands
+• Partnered with Sales team on major accounts, supporting complex client implementations and providing technical consulting on data integration strategies for marketing automation workflows
+• Deep expertise in marketing technology including email marketing, campaign automation, customer segmentation, behavioral triggers, and multi-channel orchestration
+• Collaborated with clients to optimize marketing program performance, gathering feedback on platform capabilities and translating requirements into product enhancements
+
+Additional Experience
+
+Several other VP Engineering positions and software engineering roles, including pre-series A startups and series A startups where I was an early employee and those companies grew and eventually went public.
+
+Education
+
+Rutgers University BA Computer Science
+Department of Computer Science, Departmental Distinction Award
+Phi Beta Kappa
+
+Zello Product Experience
+
+Active Zello User | 2020 - Present
+Active user of Zello's push-to-talk application for coordinating ranch operations and communications in Texas
+Hands-on experience with Zello's core features including channel management, user coordination, and real-time voice communication for field operations
+Familiar with Zello's mobile application across iOS and Android platforms in real-world field conditions
+Understand firsthand the needs of frontline and desk-less workers using voice-first communication tools
+Experience troubleshooting connectivity, audio quality, and configuration issues in challenging network environments
+Appreciate Zello's value proposition for coordinating distributed teams in real-time without traditional phone calls
